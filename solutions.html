@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Solutions | FireSlab Premium Systems</title>
+    <meta name="description" content="Custom heating and water storage solutions by FireSlab Industries.">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="/src/style.css">
+  </head>
+  <body>
+    <header id="navbar">
+      <nav class="container">
+        <a href="/" class="logo">
+          <span class="wordmark">FireSlab</span>
+          <svg class="bolt" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e07b2a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </a>
+        <ul class="nav-links">
+          <li class="has-dropdown">
+            <a href="/#products">Products <i data-lucide="chevron-down" class="nav-arrow"></i></a>
+            <div class="nav-dropdown">
+              <div class="dropdown-grid">
+                <a href="/#products" class="dropdown-item">
+                  <span class="drop-icon"><i data-lucide="droplets"></i></span>
+                  <span class="drop-text">
+                    <strong>Hot Water Tanks</strong>
+                    <small>Pressurized, Non-Pressurized, Glass Lined</small>
+                  </span>
+                </a>
+                <a href="/#products" class="dropdown-item">
+                  <span class="drop-icon"><i data-lucide="layout-grid"></i></span>
+                  <span class="drop-text">
+                    <strong>Modular Panel Tanks</strong>
+                    <small>Sectional, site-assembled storage</small>
+                  </span>
+                </a>
+                <a href="/#products" class="dropdown-item">
+                  <span class="drop-icon"><i data-lucide="wind"></i></span>
+                  <span class="drop-text">
+                    <strong>Heat Exchangers</strong>
+                    <small>Spiral, Shell & Tube, Corrugated</small>
+                  </span>
+                </a>
+                <a href="/#products" class="dropdown-item">
+                  <span class="drop-icon"><i data-lucide="zap"></i></span>
+                  <span class="drop-text">
+                    <strong>Heating Elements</strong>
+                    <small>Custom wattage, industrial grade</small>
+                  </span>
+                </a>
+                <a href="/#products" class="dropdown-item">
+                  <span class="drop-icon"><i data-lucide="layers"></i></span>
+                  <span class="drop-text">
+                    <strong>Insulation Systems</strong>
+                    <small>Glass wool, mineral wool</small>
+                  </span>
+                </a>
+                <a href="/#products" class="dropdown-item">
+                  <span class="drop-icon"><i data-lucide="settings"></i></span>
+                  <span class="drop-text">
+                    <strong>Accessories</strong>
+                    <small>Valves, flanges, controls</small>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </li>
+
+          <li class="has-dropdown">
+            <a href="/#applications">Applications <i data-lucide="chevron-down" class="nav-arrow"></i></a>
+            <div class="nav-dropdown dropdown-list">
+              <a href="/#applications" class="dropdown-item-simple"><i data-lucide="building-2"></i> Hotels & Resorts</a>
+              <a href="/#applications" class="dropdown-item-simple"><i data-lucide="cross"></i> Hospitals</a>
+              <a href="/#applications" class="dropdown-item-simple"><i data-lucide="waves"></i> Swimming Pools</a>
+              <a href="/#applications" class="dropdown-item-simple"><i data-lucide="factory"></i> Industrial Plants</a>
+              <a href="/#applications" class="dropdown-item-simple"><i data-lucide="home"></i> Residential</a>
+              <a href="/#applications" class="dropdown-item-simple"><i data-lucide="egg"></i> Hatcheries</a>
+            </div>
+          </li>
+
+          <li><a href="solutions" class="active">Solutions</a></li>
+          <li><a href="/#technology">Technology</a></li>
+          <li><a href="projects">Projects</a></li>
+          <li><a href="/#about">About</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+        <div class="nav-cta">
+          <a href="/#contact" class="btn btn-green">Get Quote</a>
+        </div>
+        <button class="mobile-toggle" aria-label="Toggle Menu">
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <section id="solutions" class="solutions-animated full-page-sol">
+        <div class="solutions-indicator"></div>
+        <div id="solutions-demo"></div>
+
+        <div class="sol-details" id="sol-details-even">
+          <div class="sol-place-box"><div class="sol-text"></div></div>
+          <div class="sol-title-box-1"><div class="sol-title-1"></div></div>
+          <div class="sol-title-box-2"><div class="sol-title-2"></div></div>
+          <div class="sol-desc"></div>
+          <div class="sol-cta">
+            <a href="#expanded-details" class="btn btn-green explore-sol-btn">Explore Full Specs</a>
+          </div>
+        </div>
+
+        <div class="sol-details" id="sol-details-odd">
+          <div class="sol-place-box"><div class="sol-text"></div></div>
+          <div class="sol-title-box-1"><div class="sol-title-1"></div></div>
+          <div class="sol-title-box-2"><div class="sol-title-2"></div></div>
+          <div class="sol-desc"></div>
+          <div class="sol-cta">
+            <a href="#expanded-details" class="btn btn-green explore-sol-btn">Explore Full Specs</a>
+          </div>
+        </div>
+
+        <div class="sol-pagination" id="sol-pagination">
+          <div class="sol-arrow sol-arrow-left">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/>
+            </svg>
+          </div>
+          <div class="sol-arrow sol-arrow-right">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
+            </svg>
+          </div>
+          <div class="sol-progress-container">
+            <div class="sol-slide-numbers" id="sol-slide-numbers"></div>
+            <div class="sol-progress-bg">
+              <div class="sol-progress-fg"></div>
+            </div>
+          </div>
+        </div>
+        <div class="sol-cover"></div>
+      </section>
+
+      <!-- Detailed View Section -->
+      <section id="expanded-details" class="sol-expanded-section">
+        <div class="container">
+          <div id="active-solution-details" class="reveal">
+            <!-- Details will be injected here on card click -->
+             <div class="empty-sol-state">
+               <h3>Select a solution to view detailed specifications</h3>
+               <p>Click on any card above or use the arrows to explore our range.</p>
+             </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="logo">
+            <span class="wordmark">FireSlab</span>
+            <svg class="bolt" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e07b2a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </a>
+          <p>India's leading manufacturer of premium heating and water storage solutions.</p>
+          <div class="social-links">
+            <a href="#"><i data-lucide="linkedin"></i></a>
+            <a href="#"><i data-lucide="twitter"></i></a>
+            <a href="#"><i data-lucide="facebook"></i></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="/#products">Products</a></li>
+            <li><a href="/#applications">Applications</a></li>
+            <li><a href="/#technology">Technology</a></li>
+            <li><a href="/#about">About Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4>Contact Us</h4>
+          <ul>
+            <li><i data-lucide="phone"></i> +91 7310018656</li>
+            <li><i data-lucide="mail"></i> info@fireslab.com</li>
+            <li><i data-lucide="map-pin"></i> GIDA, Uttar Pradesh, India</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container footer-bottom-inner">
+          <p>&copy; 2026 FireSlab Industries. All Rights Reserved.</p>
+          <p class="developed-by">Developed by <a href="https://brandnestagency.vercel.app/" target="_blank" rel="noopener noreferrer">BrandNest</a></p>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
