@@ -3,6 +3,8 @@ import Lenis from 'lenis'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
+import { initContactForm } from './contact.js'
+
 gsap.registerPlugin(ScrollTrigger)
 
 const projectsData = [
@@ -356,6 +358,7 @@ window.addEventListener('load', () => {
     });
   }
   renderProjects();
+  initContactForm();
 });
 
 function animateNumbers() {

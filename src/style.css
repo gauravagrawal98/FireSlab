@@ -864,7 +864,8 @@ input:focus, select:focus, textarea:focus {
 
 .hidden { display: none; }
 
-.success-msg {
+.success-msg,
+.form-success {
   text-align: center;
   animation: scaleIn 0.5s ease;
 }
@@ -874,7 +875,8 @@ input:focus, select:focus, textarea:focus {
   to { transform: scale(1); opacity: 1; }
 }
 
-.success-msg i {
+.success-msg i,
+.form-success i {
   font-size: 4rem;
   color: var(--green-light);
   margin-bottom: 1rem;
