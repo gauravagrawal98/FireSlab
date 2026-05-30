@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Products Showcase | FireSlab</title>
+    <meta name="description" content="Explore FireSlab's premium industrial heating systems and water storage tanks.">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="/products.js"></script>
+    <link rel="stylesheet" href="/src/style.css">
+    <link rel="stylesheet" href="/src/carousel.css">
+  </head>
+  <body class="products-body">
+    <header id="navbar">
+      <nav class="container">
+        <a href="/" class="logo">
+          <span class="wordmark">FireSlab</span>
+          <svg class="bolt" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e07b2a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </a>
+        <ul class="nav-links">
+          <li><a href="/#products" class="active">Products</a></li>
+          <li class="has-dropdown">
+            <a href="/#applications">Applications <i data-lucide="chevron-down" class="nav-arrow"></i></a>
+            <div class="nav-dropdown dropdown-list">
+              <a href="/products?app=hotels" class="dropdown-item-simple"><i data-lucide="building-2"></i> Hotels & Resorts</a>
+              <a href="/products?app=hospitals" class="dropdown-item-simple"><i data-lucide="cross"></i> Hospitals</a>
+              <a href="/products?app=pools" class="dropdown-item-simple"><i data-lucide="waves"></i> Swimming Pools</a>
+              <a href="/products?app=industrial" class="dropdown-item-simple"><i data-lucide="factory"></i> Industrial Plants</a>
+              <a href="/products?app=residential" class="dropdown-item-simple"><i data-lucide="home"></i> Residential</a>
+              <a href="/products?app=hatcheries" class="dropdown-item-simple"><i data-lucide="egg"></i> Hatcheries</a>
+            </div>
+          </li>
+          <li><a href="solutions">Solutions</a></li>
+          <li><a href="/#technology">Technology</a></li>
+          <li><a href="projects">Projects</a></li>
+          <li><a href="/#about">About</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+        <div class="nav-cta">
+          <a href="/#contact" class="btn btn-green">Get Quote</a>
+        </div>
+        <button class="mobile-toggle" aria-label="Toggle Menu">
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+    </header>
+
+    <main class="carousel-main">
+        <div class="carousel">
+            <div class="img-box">
+                <div class="img-list">
+                    <div class="img-slider" id="carousel-img-slider">
+                        <!-- Dynamic Images from JS -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box" id="carousel-info-box">
+                <!-- Dynamic Info from JS -->
+            </div>
+
+            <div class="carousel-navigation">
+                <span class="prev-btn">
+                    <i data-lucide="chevron-left"></i>
+                </span>
+                <span class="next-btn">
+                    <i data-lucide="chevron-right"></i>
+                </span>
+            </div>
+            
+            <div class="carousel-indicators" id="carousel-indicators">
+                <!-- Dynamic Indicators -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Product Detail Modal -->
+    <div id="product-modal" class="product-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title-heading">
+      <div class="product-modal-container">
+        <button class="modal-close" id="modal-close" aria-label="Close modal">
+          <i data-lucide="x"></i>
+        </button>
+        <div class="product-modal-content" id="modal-body"></div>
+      </div>
+    </div>
+
+    <!-- Lenis / GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

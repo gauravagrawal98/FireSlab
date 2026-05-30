@@ -339,6 +339,7 @@ function initHero() {
 window.addEventListener('load', () => {
   initIcons();
   initHero();
+  renderProductCards();
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
   
   const solutionsAnimated = document.querySelector('.solutions-animated');
@@ -359,6 +360,24 @@ window.addEventListener('load', () => {
   }
   renderProjects();
   initContactForm();
+
+  // Modal close listeners
+  document.getElementById('modal-close').addEventListener('click', closeProductModal);
+  document.getElementById('product-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeProductModal();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeProductModal();
+  });
+
+  // Intercept wheel events on overlay → scroll the container, not the page
+  document.getElementById('product-modal').addEventListener('wheel', function(e) {
+    const container = this.querySelector('.product-modal-container');
+    if (container) {
+      container.scrollTop += e.deltaY;
+      e.preventDefault();
+    }
+  }, { passive: false });
 });
 
 function animateNumbers() {
@@ -420,3 +439,319 @@ if (filterBtns.length > 0) {
     });
   });
 }
+
+// =============================================
+// PRODUCT CARDS — Dynamic render from products.js
+// =============================================
+function renderProductCards() {
+  const grid = document.getElementById('products-grid-dynamic');
+  if (!grid || typeof FIRESLAB_PRODUCTS === 'undefined') return;
+
+  grid.innerHTML = FIRESLAB_PRODUCTS.map(p => `
+    <div class="product-card">
+      <div class="card-image">
+        <img src="${p.cardImage}" alt="${p.cardTitle}">
+        ${p.cardBadge ? `<div class="card-badge">${p.cardBadge}</div>` : ''}
+      </div>
+      <div class="card-body">
+        <h3>${p.cardTitle}</h3>
+        <p>${p.cardDesc}</p>
+        <ul class="card-specs">
+          ${p.cardSpecs.map(s => `
+            <li><i data-lucide="${s.icon}"></i> ${s.text}</li>
+          `).join('')}
+        </ul>
+        <button class="btn btn-outline btn-sm" onclick="openProductModal('${p.id}')">
+          View Details
+        </button>
+      </div>
+    </div>
+  `).join('');
+
+  if (window.lucide) window.lucide.createIcons();
+
+  // Add drag to scroll functionality
+  const slider = document.querySelector('.horizontal-scroll-wrapper');
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  slider.addEventListener('mousedown', (e) => {
+    isDown = true;
+    slider.classList.add('active');
+    startX = e.pageX - slider.offsetLeft;
+    scrollLeft = slider.scrollLeft;
+  });
+  slider.addEventListener('mouseleave', () => {
+    isDown = false;
+    slider.classList.remove('active');
+  });
+  slider.addEventListener('mouseup', () => {
+    isDown = false;
+    slider.classList.remove('active');
+  });
+  slider.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - slider.offsetLeft;
+    const walk = (x - startX) * 2; // Scroll-fast
+    slider.scrollLeft = scrollLeft - walk;
+  });
+}
+
+// =============================================
+// PRODUCT MODAL — Open / Close / Toggle FAQ
+// =============================================
+window.openProductModal = function(productId) {
+  if (typeof FIRESLAB_PRODUCTS === 'undefined') return;
+  const p = FIRESLAB_PRODUCTS.find(x => x.id === productId);
+  if (!p) return;
+
+  document.getElementById('modal-body').innerHTML = `
+    <div class="modal-hero">
+      <img src="${p.cardImage}" alt="${p.modalTitle}">
+      <div class="modal-hero-text">
+        <h2 id="modal-title-heading">${p.modalTitle}</h2>
+        <p class="modal-tagline">${p.modalTagline}</p>
+      </div>
+    </div>
+
+    <p class="modal-description">${p.modalDescription.replace(/\n\n/g, '</p><p class="modal-description">')}</p>
+
+    <h3 class="modal-section-title">Key Features</h3>
+    <div class="modal-features-grid">
+      ${p.features.map(f => `
+        <div class="modal-feature-card">
+          <h4>${f.title}</h4>
+          <p>${f.desc}</p>
+        </div>
+      `).join('')}
+    </div>
+
+    ${p.materials ? `
+    <h3 class="modal-section-title">Available Materials</h3>
+    ${p.materials.map(m => `
+      <div class="modal-material">
+        <h4>${m.name}</h4>
+        <p>${m.desc}</p>
+        <strong>Suitable For:</strong>
+        <ul class="modal-suitable-list">${m.suitableFor.map(s => `<li>${s}</li>`).join('')}</ul>
+      </div>
+    `).join('')}` : ''}
+
+    <h3 class="modal-section-title">Technical Specifications</h3>
+    <table class="modal-specs-table">
+      <thead><tr><th>Parameter</th><th>Specification</th></tr></thead>
+      <tbody>
+        ${p.specs.map(s => `
+          <tr><td>${s.param}</td><td>${s.value}</td></tr>
+        `).join('')}
+      </tbody>
+    </table>
+
+    ${p.compatibleSystems ? `
+    <h3 class="modal-section-title">Compatible Systems</h3>
+    <ul class="modal-list">
+      ${p.compatibleSystems.map(s => `<li><i data-lucide="check-circle"></i> ${s}</li>`).join('')}
+    </ul>` : ''}
+
+    <h3 class="modal-section-title">Applications</h3>
+    <ul class="modal-list">
+      ${p.applications.map(a => `<li><i data-lucide="check-circle"></i> ${a}</li>`).join('')}
+    </ul>
+
+    ${p.whyChoose ? `
+    <h3 class="modal-section-title">Why Choose Our ${p.cardTitle}?</h3>
+    <ul class="modal-list">
+      ${p.whyChoose.map(w => `<li><i data-lucide="check-circle"></i> ${w}</li>`).join('')}
+    </ul>` : ''}
+
+    <h3 class="modal-section-title">Industries We Serve</h3>
+    <ul class="modal-list modal-list-grid">
+      ${p.industries.map(i => `<li><i data-lucide="building-2"></i> ${i}</li>`).join('')}
+    </ul>
+
+    <h3 class="modal-section-title">Frequently Asked Questions</h3>
+    <div class="modal-faqs">
+      ${p.faqs.map((f, i) => `
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(${i})">
+            <span>${f.q}</span>
+            <i data-lucide="chevron-down" class="faq-icon"></i>
+          </button>
+          <div class="faq-answer" id="faq-${i}">
+            <p>${f.a}</p>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+
+    <div class="modal-cta">
+      <p>${p.ctaText}</p>
+      <a href="#contact" class="btn btn-green" onclick="closeProductModal()">Request a Quote</a>
+    </div>
+  `;
+
+  document.getElementById('product-modal').classList.add('active');
+  lenis.stop(); // Stop Lenis smooth scroll so background doesn't scroll
+  document.body.style.overflow = 'hidden';
+  if (window.lucide) window.lucide.createIcons();
+  // Scroll overlay to top
+  document.getElementById('product-modal').scrollTop = 0;
+}
+
+window.closeProductModal = function() {
+  document.getElementById('product-modal').classList.remove('active');
+  document.body.style.overflow = '';
+  lenis.start(); // Resume Lenis smooth scroll
+}
+
+window.toggleFaq = function(index) {
+  const answer = document.getElementById(`faq-${index}`);
+  const btn = answer.previousElementSibling;
+  answer.classList.toggle('open');
+  btn.classList.toggle('open');
+}
+
+// =============================================
+// Carousel Logic (Products Page)
+// =============================================
+function initCarousel() {
+  const imgSlider = document.getElementById('carousel-img-slider');
+  const infoBox = document.getElementById('carousel-info-box');
+  const indicatorsBox = document.getElementById('carousel-indicators');
+  
+  if (!imgSlider || typeof FIRESLAB_PRODUCTS === 'undefined') return;
+
+  // Filter products based on URL ?app= parameter
+  const urlParams = new URLSearchParams(window.location.search);
+  const appFilter = urlParams.get('app');
+  let activeProducts = FIRESLAB_PRODUCTS;
+
+  if (appFilter) {
+    const filterKeyword = appFilter.toLowerCase();
+    const mappedKeyword = {
+      'hotels': 'hotel',
+      'hospitals': 'hospital',
+      'pools': 'commercial', // Mapped to commercial since 'pools' is not in products.js data
+      'industrial': 'industr',
+      'residential': 'residential',
+      'hatcheries': 'commercial' // Mapped to commercial since 'hatcheries' is not in data
+    }[filterKeyword] || filterKeyword;
+
+    activeProducts = FIRESLAB_PRODUCTS.filter(p => {
+      const appsStr = (p.applications || []).join(' ').toLowerCase();
+      const indsStr = (p.industries || []).join(' ').toLowerCase();
+      return appsStr.includes(mappedKeyword) || indsStr.includes(mappedKeyword);
+    });
+
+    if (activeProducts.length === 0) activeProducts = FIRESLAB_PRODUCTS; // Fallback if no match
+  }
+
+  const total = activeProducts.length;
+  imgSlider.style.setProperty('--total', total);
+
+  let imgHTML = '';
+  let infoHTML = '';
+  let dotsHTML = '';
+
+  activeProducts.forEach((product, i) => {
+    imgHTML += `
+      <div class="img-item ${i === 0 ? 'active' : ''}" style="--i:${i};">
+          <div class="item">
+              <img src="${product.cardImage}" alt="${product.cardTitle}">
+          </div>
+      </div>
+    `;
+
+    infoHTML += `
+      <div class="info-item ${i === 0 ? 'active' : ''}">
+          <span class="info-tagline">${product.cardBadge || product.category}</span>
+          <h2 class="info-title">${product.cardTitle}</h2>
+          <p class="info-desc">${product.cardDesc}</p>
+          
+          <ul class="info-specs">
+            <li><i data-lucide="check-circle"></i> High Quality Engineering</li>
+            <li><i data-lucide="shield-check"></i> Standard Compliant</li>
+            <li><i data-lucide="zap"></i> Maximum Efficiency</li>
+          </ul>
+
+          <div class="info-btns">
+              <button class="btn btn-green" onclick="openProductModal('${product.id}')">View Details</button>
+          </div>
+      </div>
+    `;
+
+    dotsHTML += `<span class="indicator-dot ${i === 0 ? 'active' : ''}" data-index="${i}"></span>`;
+  });
+
+  imgSlider.innerHTML = imgHTML;
+  infoBox.innerHTML = infoHTML;
+  indicatorsBox.innerHTML = dotsHTML;
+  
+  if (window.lucide) window.lucide.createIcons();
+
+  const imgItems = document.querySelectorAll('.img-item');
+  const infoItems = document.querySelectorAll('.info-item');
+  const dots = document.querySelectorAll('.indicator-dot');
+  const nextBtn = document.querySelector('.next-btn');
+  const prevBtn = document.querySelector('.prev-btn');
+
+  let indexSlider = 0;
+  let index = 0;
+
+  const updateCarousel = () => {
+    const isMobile = window.innerWidth <= 991;
+    
+    if (!isMobile) {
+      const angle = 360 / total;
+      imgSlider.style.transform = `rotate(${indexSlider * angle}deg)`;
+
+      const items = document.querySelectorAll('.item');
+      items.forEach(item => {
+          item.style.transform = `rotate(${indexSlider * -angle}deg)`;
+      });
+    }
+
+    document.querySelector('.img-item.active').classList.remove('active');
+    imgItems[index].classList.add('active');
+
+    document.querySelector('.info-item.active').classList.remove('active');
+    infoItems[index].classList.add('active');
+
+    document.querySelector('.indicator-dot.active').classList.remove('active');
+    dots[index].classList.add('active');
+  };
+
+  if(nextBtn) {
+    nextBtn.addEventListener('click', () => {
+        indexSlider++;
+        index++;
+        if (index > total - 1) index = 0;
+        updateCarousel();
+    });
+  }
+
+  if(prevBtn) {
+    prevBtn.addEventListener('click', () => {
+        indexSlider--;
+        index--;
+        if (index < 0) index = total - 1;
+        updateCarousel();
+    });
+  }
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', (e) => {
+      const targetIndex = parseInt(e.target.getAttribute('data-index'));
+      const diff = targetIndex - index;
+      indexSlider += diff;
+      index = targetIndex;
+      updateCarousel();
+    });
+  });
+}
+
+document.addEventListener('DOMContentLoaded', initCarousel);
+
+

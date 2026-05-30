@@ -7,6 +7,7 @@
     <title>FireSlab | Premium Industrial Heating Systems</title>
     <meta name="description" content="FireSlab Industries manufactures high-performance pressurized hot water tanks, heat exchangers, and modular storage solutions.">
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="/products.js"></script>
     <link rel="stylesheet" href="/src/style.css">
   </head>
   <body>
@@ -21,18 +22,32 @@
             <a href="#products">Products <i data-lucide="chevron-down" class="nav-arrow"></i></a>
             <div class="nav-dropdown">
               <div class="dropdown-grid">
-                <a href="#products" class="dropdown-item">
+                <a href="#products" class="dropdown-item" onclick="openProductModal('pressurized-tank'); return false;">
                   <span class="drop-icon"><i data-lucide="droplets"></i></span>
                   <span class="drop-text">
-                    <strong>Hot Water Tanks</strong>
-                    <small>Pressurized, Non-Pressurized, Glass Lined</small>
+                    <strong>Pressurized Hot Water Tank</strong>
+                    <small>100L – 10,000+ Litres | MS / SS304 / SS316</small>
                   </span>
                 </a>
-                <a href="#products" class="dropdown-item">
+                <a href="#products" class="dropdown-item" onclick="openProductModal('non-pressurized-tank'); return false;">
+                  <span class="drop-icon"><i data-lucide="thermometer"></i></span>
+                  <span class="drop-text">
+                    <strong>Non-Pressurized Insulated Tank</strong>
+                    <small>500L – 3000 Litres | PUF Insulated</small>
+                  </span>
+                </a>
+                <a href="#products" class="dropdown-item" onclick="openProductModal('glass-lined-tank'); return false;">
+                  <span class="drop-icon"><i data-lucide="shield-check"></i></span>
+                  <span class="drop-text">
+                    <strong>Glass Lined Hot Water Tank</strong>
+                    <small>Enamel Coated | Up to 7 Bar</small>
+                  </span>
+                </a>
+                <a href="#products" class="dropdown-item" onclick="openProductModal('modular-panel-tank'); return false;">
                   <span class="drop-icon"><i data-lucide="layout-grid"></i></span>
                   <span class="drop-text">
                     <strong>Modular Panel Tanks</strong>
-                    <small>Sectional, site-assembled storage</small>
+                    <small>1,000L – 250,000+ Litres | Site-assembled</small>
                   </span>
                 </a>
                 <a href="#products" class="dropdown-item">
@@ -49,20 +64,12 @@
                     <small>Custom wattage, industrial grade</small>
                   </span>
                 </a>
-                <a href="#products" class="dropdown-item">
-                  <span class="drop-icon"><i data-lucide="layers"></i></span>
-                  <span class="drop-text">
-                    <strong>Insulation Systems</strong>
-                    <small>Glass wool, mineral wool</small>
-                  </span>
+                
+                <div style="height: 1px; background: rgba(255,255,255,0.1); margin: 0.5rem 1rem;"></div>
+                <a href="/products" class="dropdown-item" style="justify-content: center; text-align: center; background: rgba(45,106,53,0.15); border-radius: 4px; margin: 0.5rem 1rem 1rem 1rem; padding: 0.8rem;">
+                  <strong style="color: var(--green-light); font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase;">View All Products <i data-lucide="arrow-right" style="width: 14px; height: 14px; vertical-align: middle; margin-left: 4px;"></i></strong>
                 </a>
-                <a href="#products" class="dropdown-item">
-                  <span class="drop-icon"><i data-lucide="settings"></i></span>
-                  <span class="drop-text">
-                    <strong>Accessories</strong>
-                    <small>Valves, flanges, controls</small>
-                  </span>
-                </a>
+
               </div>
             </div>
           </li>
@@ -70,12 +77,12 @@
           <li class="has-dropdown">
             <a href="#applications">Applications <i data-lucide="chevron-down" class="nav-arrow"></i></a>
             <div class="nav-dropdown dropdown-list">
-              <a href="#applications" class="dropdown-item-simple"><i data-lucide="building-2"></i> Hotels & Resorts</a>
-              <a href="#applications" class="dropdown-item-simple"><i data-lucide="cross"></i> Hospitals</a>
-              <a href="#applications" class="dropdown-item-simple"><i data-lucide="waves"></i> Swimming Pools</a>
-              <a href="#applications" class="dropdown-item-simple"><i data-lucide="factory"></i> Industrial Plants</a>
-              <a href="#applications" class="dropdown-item-simple"><i data-lucide="home"></i> Residential</a>
-              <a href="#applications" class="dropdown-item-simple"><i data-lucide="egg"></i> Hatcheries</a>
+              <a href="/products?app=hotels" class="dropdown-item-simple"><i data-lucide="building-2"></i> Hotels & Resorts</a>
+              <a href="/products?app=hospitals" class="dropdown-item-simple"><i data-lucide="cross"></i> Hospitals</a>
+              <a href="/products?app=pools" class="dropdown-item-simple"><i data-lucide="waves"></i> Swimming Pools</a>
+              <a href="/products?app=industrial" class="dropdown-item-simple"><i data-lucide="factory"></i> Industrial Plants</a>
+              <a href="/products?app=residential" class="dropdown-item-simple"><i data-lucide="home"></i> Residential</a>
+              <a href="/products?app=hatcheries" class="dropdown-item-simple"><i data-lucide="egg"></i> Hatcheries</a>
             </div>
           </li>
 
@@ -261,42 +268,42 @@
           <div class="overlay"></div>
           <div class="app-content">
             <h3>Space Heating</h3>
-            <a href="#" class="explore">Explore <i data-lucide="chevron-right"></i></a>
+            <a href="/products?app=residential" class="explore">Explore <i data-lucide="chevron-right"></i></a>
           </div>
         </div>
         <div class="app-cell reveal" style="--bg-url: url('/app2.jpg')">
           <div class="overlay"></div>
           <div class="app-content">
             <h3>Utility Water</h3>
-            <a href="#" class="explore">Explore <i data-lucide="chevron-right"></i></a>
+            <a href="/products?app=hotels" class="explore">Explore <i data-lucide="chevron-right"></i></a>
           </div>
         </div>
         <div class="app-cell reveal" style="--bg-url: url('/app3.jpg')">
           <div class="overlay"></div>
           <div class="app-content">
             <h3>Swimming Pool</h3>
-            <a href="#" class="explore">Explore <i data-lucide="chevron-right"></i></a>
+            <a href="/products?app=pools" class="explore">Explore <i data-lucide="chevron-right"></i></a>
           </div>
         </div>
         <div class="app-cell reveal" style="--bg-url: url('/app4.jpg')">
           <div class="overlay"></div>
           <div class="app-content">
             <h3>Kitchen</h3>
-            <a href="#" class="explore">Explore <i data-lucide="chevron-right"></i></a>
+            <a href="/products?app=hotels" class="explore">Explore <i data-lucide="chevron-right"></i></a>
           </div>
         </div>
         <div class="app-cell reveal" style="--bg-url: url('/app5.jpg')">
           <div class="overlay"></div>
           <div class="app-content">
             <h3>Hatcheries</h3>
-            <a href="#" class="explore">Explore <i data-lucide="chevron-right"></i></a>
+            <a href="/products?app=hatcheries" class="explore">Explore <i data-lucide="chevron-right"></i></a>
           </div>
         </div>
         <div class="app-cell reveal" style="--bg-url: url('/app6.jpg')">
           <div class="overlay"></div>
           <div class="app-content">
             <h3>Industries</h3>
-            <a href="#" class="explore">Explore <i data-lucide="chevron-right"></i></a>
+            <a href="/products?app=industrial" class="explore">Explore <i data-lucide="chevron-right"></i></a>
           </div>
         </div>
       </section>
@@ -435,56 +442,13 @@
           </div>
           
           <div class="horizontal-scroll-wrapper">
-            <div class="products-grid">
-              <!-- Tank 1 -->
-              <div class="product-card">
-                <div class="card-image">
-                  <img src="/tank-1.png" alt="Pressurized Tank">
-                  <div class="card-badge">Bestseller</div>
-                </div>
-                <div class="card-body">
-                  <h3>Pressurized Hot Water Tanks</h3>
-                  <p>Capacity: 300L - 5000L. Built with high-grade SS 304/316 for extreme durability.</p>
-                  <ul class="card-specs">
-                    <li><i data-lucide="activity"></i> 10 Bar Pressure</li>
-                    <li><i data-lucide="thermometer"></i> 95°C Max Temp</li>
-                  </ul>
-                  <a href="#contact" class="btn btn-outline btn-sm">Technical Specs</a>
-                </div>
-              </div>
-
-              <!-- Exchanger 1 -->
-              <div class="product-card">
-                <div class="card-image">
-                  <img src="/exchanger-1.png" alt="Spiral Exchanger">
-                </div>
-                <div class="card-body">
-                  <h3>Spiral Heat Exchanger</h3>
-                  <p>Patented spiral design for maximum thermal transfer and zero cold zones.</p>
-                  <ul class="card-specs">
-                    <li><i data-lucide="zap"></i> 97% Efficiency</li>
-                    <li><i data-lucide="refresh-cw"></i> Self Cleaning</li>
-                  </ul>
-                  <a href="#contact" class="btn btn-outline btn-sm">Technical Specs</a>
-                </div>
-              </div>
-
-              <!-- Panel Tank -->
-              <div class="product-card">
-                <div class="card-image">
-                  <img src="/panel-tank.png" alt="Modular Tank">
-                </div>
-                <div class="card-body">
-                  <h3>Modular Panel Tanks</h3>
-                  <p>Site-assembled sectional tanks for rooftops and locations with limited access.</p>
-                  <ul class="card-specs">
-                    <li><i data-lucide="layers"></i> Modular Design</li>
-                    <li><i data-lucide="shield"></i> 25 Year Life</li>
-                  </ul>
-                  <a href="#contact" class="btn btn-outline btn-sm">Technical Specs</a>
-                </div>
-              </div>
+            <div class="products-grid" id="products-grid-dynamic">
+              <!-- Cards are injected dynamically from products.js via renderProductCards() in main.js -->
             </div>
+          </div>
+          
+          <div class="center-cta reveal" style="margin-top: 3rem;">
+            <a href="products" class="btn btn-outline">View All Products</a>
           </div>
         </div>
       </section>
@@ -701,6 +665,16 @@
         </div>
       </div>
     </footer>
+
+    <!-- Product Detail Modal -->
+    <div id="product-modal" class="product-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title-heading">
+      <div class="product-modal-container">
+        <button class="modal-close" id="modal-close" aria-label="Close modal">
+          <i data-lucide="x"></i>
+        </button>
+        <div class="product-modal-content" id="modal-body"></div>
+      </div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
     <script type="module" src="/src/main.js"></script>
