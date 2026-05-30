@@ -4,6 +4,9 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 import { initContactForm } from './contact.js'
+import { FIRESLAB_PRODUCTS } from '../products.js'
+
+window.FIRESLAB_PRODUCTS = FIRESLAB_PRODUCTS
 
 gsap.registerPlugin(ScrollTrigger)
 

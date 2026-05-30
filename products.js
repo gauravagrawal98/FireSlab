@@ -2,7 +2,7 @@
 // All content sourced word-for-word from FireSlab Product.docx
 // To add a new product: push a new object to FIRESLAB_PRODUCTS. Cards & modals render automatically.
 
-const FIRESLAB_PRODUCTS = [
+export const FIRESLAB_PRODUCTS = [
   {
     id: 'pressurized-tank',
     category: 'tanks',
