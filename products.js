@@ -4,7 +4,7 @@
 
 export const FIRESLAB_PRODUCTS = [
   {
-    id: 'pressurized-tank',
+    id: 'pressurized-water-storage-tank',
     category: 'tanks',
     cardImage: '/tank-1.png',
     cardBadge: 'Bestseller',
